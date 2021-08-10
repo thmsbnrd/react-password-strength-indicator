@@ -3,10 +3,10 @@ import zxcvbn from "zxcvbn";
 
 const PasswordStrengthMeter = ({ password }) => {
   const testResult = zxcvbn(password);
-  console.log(testResult);
+  const num = (testResult.score * 100) / 4;
 
   const changePasswordColor = () => ({
-    width: "70%",
+    width: `${num}%`,
     background: "red",
     height: "7px",
   });
