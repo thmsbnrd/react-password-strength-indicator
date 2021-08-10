@@ -8,7 +8,7 @@ const PasswordStrengthMeter = ({ password }) => {
   const strengthColor = (num) => {
     switch (num) {
       case 50:
-        return "#FFD166";
+        return "#ff8a66";
         break;
       case 75:
         return "#06D6A0";
@@ -21,8 +21,6 @@ const PasswordStrengthMeter = ({ password }) => {
         break;
     }
   };
-
-  console.log(strengthColor(num));
 
   const changePasswordColor = () => ({
     width: `${num}%`,
