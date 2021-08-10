@@ -5,7 +5,6 @@ const PasswordStrengthMeter = ({ password }) => {
   const testResult = zxcvbn(password);
   const num = (testResult.score * 100) / 4;
   // console.log(testResult);
-  // console.log(password.length);
 
   const strengthColor = (num) => {
     switch (num) {
@@ -24,9 +23,25 @@ const PasswordStrengthMeter = ({ password }) => {
     }
   };
 
+  const strengthIndicator = (num) => {
+    switch (num) {
+      case 50:
+        return "fair";
+        break;
+      case 75:
+        return "strong enough";
+        break;
+      case 100:
+        return "very strong";
+        break;
+      default:
+        return "too weak";
+        break;
+    }
+  };
+
   const crackTime =
     testResult.crack_times_display.online_throttling_100_per_hour;
-  console.log(`It would take ${crackTime} to crack your password.`);
 
   const crackPhrase = (passwordLength) => {
     if (passwordLength === 0) {
@@ -47,7 +62,7 @@ const PasswordStrengthMeter = ({ password }) => {
       <div className="progress" style={{ height: "7px" }}>
         <div className="progress-bar" style={changePasswordColor()}></div>
       </div>
-      <p className="password-indication">too weak</p>
+      <p className="password-indication">{strengthIndicator(num)}</p>
       <p className="password-crack-time">{crackPhrase(password.length)}</p>
     </div>
   );
