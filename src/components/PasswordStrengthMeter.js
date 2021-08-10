@@ -10,16 +10,12 @@ const PasswordStrengthMeter = ({ password }) => {
     switch (num) {
       case 50:
         return "#ff8a66";
-        break;
       case 75:
         return "#06D6A0";
-        break;
       case 100:
         return "#06D6A0";
-        break;
       default:
         return "#EF476F";
-        break;
     }
   };
 
@@ -27,21 +23,17 @@ const PasswordStrengthMeter = ({ password }) => {
     switch (num) {
       case 50:
         return "fair";
-        break;
       case 75:
         return "strong enough";
-        break;
       case 100:
         return "very strong";
-        break;
       default:
         return "too weak";
-        break;
     }
   };
 
   const crackTime =
-    testResult.crack_times_display.online_throttling_100_per_hour;
+    testResult.crack_times_display.online_no_throttling_10_per_second;
 
   const crackPhrase = (passwordLength) => {
     if (passwordLength === 0) {
