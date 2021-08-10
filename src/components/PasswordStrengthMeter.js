@@ -4,6 +4,11 @@ import zxcvbn from "zxcvbn";
 const PasswordStrengthMeter = ({ password }) => {
   const testResult = zxcvbn(password);
   const num = (testResult.score * 100) / 4;
+  // console.log(testResult);
+
+  const crackTime =
+    testResult.crack_times_display.online_throttling_100_per_hour;
+  console.log(`Your password can be cracked in ${crackTime}`);
 
   const strengthColor = (num) => {
     switch (num) {
