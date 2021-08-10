@@ -1,6 +1,10 @@
 import React from "react";
+import zxcvbn from "zxcvbn";
 
-const PasswordStrengthMeter = () => {
+const PasswordStrengthMeter = ({ password }) => {
+  const testResult = zxcvbn(password);
+  console.log(testResult);
+
   const changePasswordColor = () => ({
     width: "70%",
     background: "red",
