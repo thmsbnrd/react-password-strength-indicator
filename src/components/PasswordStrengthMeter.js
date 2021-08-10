@@ -54,7 +54,9 @@ const PasswordStrengthMeter = ({ password }) => {
       <div className="progress" style={{ height: "7px" }}>
         <div className="progress-bar" style={changePasswordColor()}></div>
       </div>
-      <p className="password-indication">{strengthIndicator(num)}</p>
+      <p className="password-indication">
+        {password.length > 0 ? strengthIndicator(num) : ""}
+      </p>
       <p className="password-crack-time">{crackPhrase(password.length)}</p>
     </div>
   );
