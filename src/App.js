@@ -7,12 +7,12 @@ function App() {
   return (
     <div className="container">
       <div className="col-md-6 mx-auto">
-        <h3 className="text-center my-5">Admin Password</h3>
+        <h3 className="text-center my-5">Nouveau Mot de Passe</h3>
         <div className="form-group mb-1">
           <input
             type="password"
             className="form-control shadow-none"
-            placeholder="password"
+            placeholder="mot de passe"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
