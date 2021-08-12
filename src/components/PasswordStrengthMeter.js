@@ -19,16 +19,29 @@ const PasswordStrengthMeter = ({ password }) => {
     }
   };
 
+  // const strengthIndicator = (num) => {
+  //   switch (num) {
+  //     case 50:
+  //       return "moyen";
+  //     case 75:
+  //       return "fort";
+  //     case 100:
+  //       return "très fort";
+  //     default:
+  //       return "trop faible";
+  //   }
+  // };
+
   const strengthIndicator = (num) => {
     switch (num) {
       case 50:
-        return "moyen";
+        return "Encore un peu";
       case 75:
-        return "fort";
+        return "Très bien";
       case 100:
-        return "très fort";
+        return "Super!";
       default:
-        return "trop faible";
+        return "Bon début";
     }
   };
 
@@ -41,12 +54,6 @@ const PasswordStrengthMeter = ({ password }) => {
     }
     if (crackTime.includes("seconds")) {
       return crackTime.replace("seconds", "seconds");
-    }
-    if (crackTime.includes("minute")) {
-      return crackTime.replace("minute", "minute");
-    }
-    if (crackTime.includes("minutes")) {
-      return crackTime.replace("minutes", "minutes");
     }
     if (crackTime.includes("hour")) {
       return crackTime.replace("hour", "heure");
@@ -77,6 +84,9 @@ const PasswordStrengthMeter = ({ password }) => {
     if (crackTime.includes("centuries")) {
       return crackTime.replace("centuries", "plusieurs siècles");
     }
+    if (crackTime) {
+      return crackTime;
+    }
   };
 
   const crackPhrase = (passwordLength) => {
@@ -95,15 +105,25 @@ const PasswordStrengthMeter = ({ password }) => {
     height: "7px",
   });
 
+  // <p className="password-indication">
+  //   {password.length > 0 ? strengthIndicator(num) : ""}
+  // </p>;
+
   return (
     <div>
       <div className="progress" style={{ height: "7px" }}>
         <div className="progress-bar" style={changePasswordColor()}></div>
       </div>
-      <p className="password-indication">
-        {password.length > 0 ? strengthIndicator(num) : ""}
+
+      {password.length > 0 ? (
+        <p>{strengthIndicator(num)}</p>
+      ) : (
+        <p style={{ opacity: "0" }}>none</p>
+      )}
+
+      <p className="password-crack-time">
+        <small>{crackPhrase(password.length)}</small>
       </p>
-      <p className="password-crack-time">{crackPhrase(password.length)}</p>
     </div>
   );
 };
